@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-class PostTableSeeder extends Seeder
+class ProjectTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +18,11 @@ class PostTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i = 0; $i < 10; $i++) {
-            $post = new Post();
-            $post->title = $faker->sentence(3);
-            $post->slug = Str::slug($post->title, '-');
-            $post->content = $faker->text(500);
-            $post->save();
+            $project = new Project();
+            $project->title = $faker->sentence(3);
+            $project->slug = Str::slug($project->title, '-');
+            $project->content = $faker->text(500);
+            $project->save();
         }
     }
 }

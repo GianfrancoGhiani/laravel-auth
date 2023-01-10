@@ -14,7 +14,7 @@
                     </div>
                     @endif
                     <ul>
-                        <li><a href="{{route('admin.posts.index')}}">Post area</a></li>
+                        <li><a href="{{route('admin.projects.index')}}">Project area</a></li>
                     </ul>
                 </div>
             </div>

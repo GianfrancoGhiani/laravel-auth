@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container card d-block p-5" id="postCreate">
-        <form action="{{route('admin.posts.store')}}" method="POST" class="row m-auto">
+        <form action="{{route('admin.projects.store')}}" method="POST" class="row m-auto">
             @csrf
             <label for="title"><h5>Title:</h5></label>
             <input type="text" name="title" id="title" class="col-4" placeholder="Insert a title...">

@@ -81,6 +81,9 @@
         <main class="my-3">
             @yield('content')
         </main>
+        <footer>
+            
+        </footer>
     </div>
 </body>
 

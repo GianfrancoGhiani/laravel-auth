@@ -36,17 +36,20 @@ body{
             border: 1px dotted $my-secondary;
 
         }
+        &.dng:hover{
+            background-color: $my-dng;
+            border-color: $my-dng;
+        }
     }
 }
-.my-navbar{
-    background-color: $lgt-black-bg;
-    // .navbar-element{
-    //     border-left: 1px solid $white-txt;
-    //     border-right: 1px solid $white-txt;
-    // }
-    // .container{
-    //     padding: 0;
-    // }
+header{
+    .my-navbar{
+        background-color: $lgt-black-bg;
+    }
+    &, footer{
+        height: 3.5rem;
+        background-color: $lgt-black-bg;
+    }
 }
 .my-drop, .card{
     background-color: $grey-bg;
@@ -67,7 +70,7 @@ body{
     }
 }
 
-#postIndex{
+#projIndex{
     .card{
         max-height: 60vh;
         overflow: hidden;
@@ -78,7 +81,7 @@ body{
         /// edit scrollbar pls /// 
     }
 }
-#postCreate{
+#projCreate{
     label{
         padding: 0;
     }
@@ -95,4 +98,14 @@ body{
     }
     overflow-y: auto;
 
+}
+#show{
+    .container{
+        position: relative;
+        height: calc(100vh - 3.5rem);
+        .edit{
+            position: absolute;
+            bottom: 5rem;
+            right: 0;
+        }}
 }
