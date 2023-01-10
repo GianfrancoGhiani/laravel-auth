@@ -1,8 +1,10 @@
 // color palette
 $black-bg: #121212;
+$lgt-black-bg: lighten($color: $black-bg, $amount: 3);
+
 $grey-bg: #1e1e1e;
 $black-txt: #171717;
-$white-text: #ededed;
+$white-txt: #ededed;
 
 $my-primary: #86fcf6;
 $my-secondary: #D2DE44;
@@ -12,3 +14,7 @@ $lgt-prim: lighten($color: $my-primary, $amount: 10);
 
 $lgt-sec: lighten($color: $my-secondary, $amount: 10);
 
+$theme-colors: (
+  "primary": #86fcf6,
+  "secondary": #D2DE44,
+)

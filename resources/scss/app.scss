@@ -1,5 +1,39 @@
 @use './partials/variables' as *;
 @use './partials/mixins' as *;
 
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
 
+body{
+    font-family: 'League Spartan', sans-serif;
+    h1, h2, h3, h4, h5 {
+        font-family: 'Sofia Sans', sans-serif;
+    }
+    background-color: $black-bg;
+    color: $white-txt;
+}
+
+.my-navbar{
+    background-color: $lgt-black-bg;
+    // .navbar-element{
+    //     border-left: 1px solid $white-txt;
+    //     border-right: 1px solid $white-txt;
+    // }
+}
+.my-drop, .card{
+    background-color: $grey-bg;
+    .dropdown-item{
+        color: $white-txt;
+        &:hover{
+            background-color: $grey-bg;
+            color: $my-primary;
+        }
+    }
+}
+.form-check-input:checked{
+    background-color: $my-primary;
+    border-color: $my-primary;
+    &[type=checkbox] {
+
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23171717' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
+    }
+}
