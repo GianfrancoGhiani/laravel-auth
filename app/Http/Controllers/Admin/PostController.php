@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -39,7 +40,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        $newpost = new Post();
+        $newpost->title = $form_data['title'];
+        $newpost->slug = Str::slug($form_data['title'], '-');
+        $newpost->content = $form_data['content'];
+        $newpost->save();
+        return redirect()->route('admin.posts.show', ['post' => $newpost->slug]);
     }
 
     /**

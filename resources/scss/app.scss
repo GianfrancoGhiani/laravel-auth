@@ -5,18 +5,47 @@
 
 body{
     font-family: 'League Spartan', sans-serif;
+}
+#app{
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
     h1, h2, h3, h4, h5 {
         font-family: 'Sofia Sans', sans-serif;
+        &::first-letter{
+            color: $my-secondary;
+        }
     }
     background-color: $black-bg;
     color: $white-txt;
-}
+    li{
+        list-style: none;
+        a{
+            text-decoration: none;
+            color: $white-txt;
+            &:hover{
+                color: $my-primary;
+            }
+        }
+    }
+    button{
+        font-weight: 800;
+        border: 1px dotted transparent;
+        &:hover{
+            background-color: $drk-prim;
+            border: 1px dotted $my-secondary;
 
+        }
+    }
+}
 .my-navbar{
     background-color: $lgt-black-bg;
     // .navbar-element{
     //     border-left: 1px solid $white-txt;
     //     border-right: 1px solid $white-txt;
+    // }
+    // .container{
+    //     padding: 0;
     // }
 }
 .my-drop, .card{
@@ -36,4 +65,34 @@ body{
 
         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23171717' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
     }
+}
+
+#postIndex{
+    .card{
+        max-height: 60vh;
+        overflow: hidden;
+        .card-body{
+            overflow-y: auto;
+        }
+
+        /// edit scrollbar pls /// 
+    }
+}
+#postCreate{
+    label{
+        padding: 0;
+    }
+    input, textarea{
+        border-radius: 0.3rem;
+        line-height: 2.5rem;
+        &:focus{
+            outline: 1px ridge $my-primary;
+            // background-color: $my-primary;
+        }
+    }
+    .card{
+        max-height: 60vh;
+    }
+    overflow-y: auto;
+
 }
