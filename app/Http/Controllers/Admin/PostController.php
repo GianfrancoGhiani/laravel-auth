@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -14,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+
+        return view('admin/posts/index', compact('posts'));
     }
 
     /**
@@ -24,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -44,9 +48,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        // $post = Post::where('slug', '=', $slug)
+        //     ->get();
+        $post = DB::table('posts')
+            ->where('slug', '=', $slug)
+            ->get()[0];
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -55,9 +64,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $post = DB::table('posts')
+            ->where('slug', '=', $slug)
+            ->get()[0];
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
