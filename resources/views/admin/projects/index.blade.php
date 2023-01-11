@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Portfolio
+@endsection
 
 @section('content')
     <section id="projIndex">
@@ -11,9 +14,19 @@
                         </div>
         
                         <div class="card-body">
-                            <ul>
+                            <ul class="container-fluid">
                                 @foreach ($projects as $project)
-                                    <li><a href="{{route('admin.projects.show', $project->slug)}}" title="View project">{{$project->title}}</a></li>
+                                    <li class="row row-cols-2">
+                                        <a href="{{route('admin.projects.show', $project->slug)}}" title="View project">{{$project->title}}</a> 
+                                        <div class="edit col-auto row row-cols-2">
+                                            <a href="{{route('admin.projects.edit', ['project'=>$project->slug])}}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                            <form action="{{route('admin.projects.destroy',['project'=>$project->slug])}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-secondary my-delete" type="submit"><i class="fa-regular fa-trash-can"></i></button>
+                                            </form>
+                                        </div> 
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>

@@ -1,8 +1,18 @@
+//              packages import
+
 @use './partials/variables' as *;
 @use './partials/mixins' as *;
 
 @import '~bootstrap/scss/bootstrap';
 
+
+$fa-font-path: '../webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+
+
+
+//              project styling
 body{
     font-family: 'League Spartan', sans-serif;
 }
@@ -98,6 +108,17 @@ header{
             overflow-y: auto;
         }
     }
+    .container-fluid{
+        .row{
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.2rem;
+            a.btn{
+                color: $black-txt;
+            }
+        }
+    }
 }
 
 //              project create page
@@ -133,7 +154,6 @@ header{
     .post-body{
         display: flex;
         .body-image{
-            
             img{
                 max-width: 100%;
             }

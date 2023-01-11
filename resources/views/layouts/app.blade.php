@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
 
     <!-- Fonts -->
@@ -38,14 +38,15 @@
                     </button> --}}
                     <div class="d-flex w-100 align-items-center justify-content-between" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link navbar-element" href="{{url('/') }}">Home</a>
-                            </li>
-                        </ul>
+                        <div class="me-auto">
+                            <h1>Logo</h1>
+                        </div>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
+                            <li class="nav-item">
+                                <a class="nav-link navbar-element" href="{{url('/') }}">About</a>
+                            </li>
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -78,7 +79,7 @@
             </nav>
         </header>
 
-        <main class="my-3">
+        <main class="my-5">
             @yield('content')
         </main>
         <footer>
