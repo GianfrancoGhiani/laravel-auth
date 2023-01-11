@@ -17,7 +17,7 @@
                     <form action="{{route('admin.projects.destroy',['project'=>$project->slug])}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-secondary dng">DELETE</button>
+                        <button type="submit" class="btn btn-secondary dng my-delete">DELETE</button>
                     </form>
                 </div>
             </div>
