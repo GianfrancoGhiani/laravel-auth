@@ -3,9 +3,12 @@
 @section('content')
     <section id="show">
         <div class="container">
-            <h3>{{$project->title}}</h3>
-            <div class="post-body">
-                {{$project->content}}
+            <h1>{{$project->title}}</h1>
+            <div class="post-body row">
+                <div class="body-text col-3">{{$project->content}}</div>
+                @if ($project->overview_image)
+                    <div class="body-image col-6 offset-3"><img src="{{asset('storage/'.$project->overview_image)}}" alt=""></div>
+                @endif
             </div>
             <div class="card edit">
                 <div class="card-header"><h5>Edit zone</h5></div>

@@ -24,7 +24,19 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|unique:projects|min:3|max:150',
+            'overview_image' => 'nullable',
+            'content' => 'nullable',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required' => 'A title is required',
+            'title.min' => 'The title may be longer than 3 char',
+            'title.max' => 'The title may be smaller than 150 char',
+            'title.unique:projects' => 'The title is already taken, choose another one',
+
         ];
     }
 }

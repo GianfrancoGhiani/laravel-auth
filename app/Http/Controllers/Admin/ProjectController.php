@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -38,9 +41,9 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
 
         // $newproject = new Project();
         // $newproject->title = $form_data['title'];
@@ -50,6 +53,11 @@ class ProjectController extends Controller
 
         $slug = Project::generateSlug($request->title);
         $form_data['slug'] = $slug;
+        if ($request->hasFile('overview_image')) {
+            $path = Storage::disk('public')->put('images', $request->overview_image);
+            $form_data['overview_image'] = $path;
+        }
+
         $newproject = Project::create($form_data);
 
         return redirect()->route('admin.projects.show', ['project' => $newproject->slug]);
@@ -61,13 +69,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Project $project)
     {
         // $project = Project::where('slug', '=', $slug)
         //     ->get();
-        $project = DB::table('projects')
-            ->where('slug', '=', $slug)
-            ->get()[0];
+
+        // $project = DB::table('projects')
+        //     ->where('slug', '=', $slug)
+        //     ->get()[0];
+
         return view('admin.projects.show', compact('project'));
     }
 
@@ -77,12 +87,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Project $project)
     {
-        $project = DB::table('projects')
-            ->where('slug', '=', $slug)
-            ->get()[0];
+        // $project = DB::table('projects')
+        //     ->where('slug', '=', $slug)
+        //     ->get()[0];
         // dd($project);
+
         return view('admin.projects.edit', compact('project'));
     }
 
@@ -93,18 +104,33 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        $form_data = $request->all();
-        $temporary_project = DB::table('projects')
-            ->where('slug', '=', $slug)
-            ->get()[0];
-        $project = Project::find($temporary_project->id);
-        $project->title = $form_data['title'];
-        $project->slug = Str::slug($form_data['title'], '-');
-        $project->content = $form_data['content'];
-        $project->update();
-        return redirect()->route('admin.projects.show', ['project' => $project->slug]);
+        $form_data = $request->validated();
+        // $temporary_project = DB::table('projects')
+        //     ->where('slug', '=', $slug)
+        //     ->get()[0];
+        // $project = Project::find($temporary_project->id);
+
+        // $project->title = $form_data['title'];
+        // $project->slug = Str::slug($form_data['title'], '-');
+        // $project->content = $form_data['content'];
+
+        $slug = Project::generateSlug($request->title);
+        $form_data['slug'] = $slug;
+        if ($request->hasFile('overview_image')) {
+            if ($project->overview_image) {
+                Storage::delete($project->overview_image);
+            }
+            $path = Storage::disk('public')->put('images', $request->overview_image);
+            $form_data['overview_image'] = $path;
+        }
+
+        $project->update($form_data);
+        return redirect()->route(
+            'admin.projects.index'
+            /** */
+        )->with('message', "$project->title updated"); //, ['project' => $project->slug]
     }
 
     /**
@@ -113,13 +139,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Project $project)
     {
-        $temporary_project = DB::table('projects')
-            ->where('slug', '=', $slug)
-            ->get()[0];
-        $project = Project::find($temporary_project->id);
+        // $temporary_project = DB::table('projects')
+        //     ->where('slug', '=', $slug)
+        //     ->get()[0];
+        // $project = Project::find($temporary_project->id);
         $project->delete();
-        return redirect()->action([ProjectController::class, 'index']);
+        return redirect()->action([ProjectController::class, 'index'])->with('message', "$project->title deleted");
     }
 }

@@ -6,6 +6,23 @@
 body{
     font-family: 'League Spartan', sans-serif;
 }
+
+//                       scrollbar
+::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+  
+::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: $black-bg;    /* color of the scroll thumb */
+    border-radius: 8px;       /* roundness of the scroll thumb */
+    border: 1px solid lighten($color: $grey-bg, $amount: 40);  /* creates padding around scroll thumb */
+}
+
+//                      global styling
 #app{
     height: 100vh;
     max-height: 100vh;
@@ -28,7 +45,7 @@ body{
             }
         }
     }
-    button{
+    button, .modal-btn{
         font-weight: 800;
         border: 1px dotted transparent;
         &:hover{
@@ -42,6 +59,8 @@ body{
         }
     }
 }
+
+//          header
 header{
     .my-navbar{
         background-color: $lgt-black-bg;
@@ -70,6 +89,7 @@ header{
     }
 }
 
+//              project index page
 #projIndex{
     .card{
         max-height: 60vh;
@@ -77,10 +97,10 @@ header{
         .card-body{
             overflow-y: auto;
         }
-
-        /// edit scrollbar pls /// 
     }
 }
+
+//              project create page
 #projCreate{
     label{
         padding: 0;
@@ -99,6 +119,8 @@ header{
     overflow-y: auto;
 
 }
+
+//              project show page
 #show{
     .container{
         position: relative;
@@ -107,7 +129,16 @@ header{
             position: absolute;
             bottom: 5rem;
             right: 0;
-        }}
+    }}
+    .post-body{
+        display: flex;
+        .body-image{
+            
+            img{
+                max-width: 100%;
+            }
+        }
+    }
 }
 
 .swal-container{
