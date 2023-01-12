@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Portfolio
+    Portfolio - Tags
 @endsection
 
 @section('content')

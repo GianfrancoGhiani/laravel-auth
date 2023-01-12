@@ -23,7 +23,7 @@
                             <ul class="container-fluid">
                                 @foreach ($projects as $project)
                                     <li class="row row-cols-2">
-                                        <a href="{{route('admin.projects.show', $project->slug)}}" title="View project">{{$project->title}} {{$project->tag_id}}</a> 
+                                        <a href="{{route('admin.projects.show', $project->slug)}}" title="View project">{{$project->title}} <sub> {{$project->tag_id ? $project->tag->name : ''}}</sub></a> 
 
                                         {{-- edit part --}}
                                         <div class="edit col-auto row row-cols-2">

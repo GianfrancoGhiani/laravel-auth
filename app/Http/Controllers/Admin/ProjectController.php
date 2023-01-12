@@ -22,6 +22,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        $tags = Tag::all();
+        // dd($projects);
         return view('admin/projects/index', compact('projects', 'tags'));
     }
 

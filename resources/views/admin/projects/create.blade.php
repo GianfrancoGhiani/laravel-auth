@@ -15,9 +15,23 @@ Project Creation
                 <label for="content" ><h5>Content:</h5></label>
                 <textarea name="content" id="content" cols="30" rows="4" placeholder="Describe your project here..."></textarea>
             </div>
-            <div>
-                <label for="overview_image"><h5>Insert your porject image</h5></label>
-                <input type="file" name="overview_image" id="overview_image" >
+            <div class="mb-3 p-0">
+                <label for="tag_id" class="form-label">Tag</label>
+                <select name="tag_id" id="tag_id" class="form-control w-25 @error('tag_id') is-invalid @enderror">
+                  <option value="">Select tag</option>
+                  @foreach ($tags as $tag)
+                      <option value="{{$tag->id}}" {{ $tag->id == old('tag_id') ? 'selected' : '' }}>{{$tag->name}}</option>
+                  @endforeach
+                </select>
+                @error('category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+            <div class="d-flex flex-column p-0 w-100">
+                <label for="overview_image" class="w-50"><h5>Insert your porject image</h5>
+                    <input type="file" name="overview_image" id="overview_image" class="input_file" >
+                    <span></span>
+                </label>
             </div>
             <button type="submit" class="btn btn-primary col-2 my-3">Create</button>
         </form>

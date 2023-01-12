@@ -89,13 +89,13 @@
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                           <li class="nav-item">
-                            <a href="{{route('admin.projects.index')}}" class="nav-link" aria-current="page">
+                            <a href="{{route('admin.projects.index')}}" class="nav-link {{Route::currentRouteName() === 'admin.projects.index' ? 'text-primary' : ''}}" aria-current="page">
                                 <i class="fa-solid fa-code"></i>
                                 Projects
                             </a>
                           </li>
                           <li>
-                            <a href="{{route('admin.tags.index')}}" class="nav-link">
+                            <a href="{{route('admin.tags.index')}}" class="nav-link {{Route::currentRouteName() === 'admin.tags.index' ? 'text-primary' : ''}}">
                                 <i class="fa-regular fa-tag"></i>
                                 Tags
                             </a>

@@ -121,10 +121,13 @@ header{
             }
         }
     }
+    sub{
+        color: $my-primary;
+    }
 }
 
 //              project create page
-#projCreate{
+#projCreate, #projEdit{
     label{
         padding: 0;
     }
@@ -137,9 +140,11 @@ header{
         }
     }
     .card{
-        max-height: 60vh;
+        max-height: 80%;
+        overflow-y: auto;
     }
-    overflow-y: auto;
+    height: calc(100vh - 3.5rem);
+    overflow-y: hidden;
 
 }
 
