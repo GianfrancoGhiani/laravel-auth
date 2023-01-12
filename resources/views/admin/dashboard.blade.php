@@ -6,9 +6,9 @@
 @section('content')
 <div class="container">
     <div class="row my-3 justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header"><h4>Dashboard</h4></div>
+                <div class="card-header"><h1>Dashboard</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,7 +17,12 @@
                     </div>
                     @endif
                     <ul>
-                        <li><a href="{{route('admin.projects.index')}}">Project area</a></li>
+                        <li><a href="{{route('admin.projects.index')}}">Projects area</a></li>
+                        <li><a href="{{route('admin.tags.index')}}">Tags area</a></li>
+                        <li><a href="#">Blog area</a></li>
+                        <li><a href="#">Social area</a></li>
+
+
                     </ul>
                 </div>
             </div>

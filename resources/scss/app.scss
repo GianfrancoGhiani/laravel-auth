@@ -9,6 +9,8 @@
 $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+
 
 
 
@@ -37,7 +39,7 @@ body{
     height: 100vh;
     max-height: 100vh;
     overflow: hidden;
-    h1, h2, h3, h4, h5 {
+    h1, h2, h3, h4, h5, th {
         font-family: 'Sofia Sans', sans-serif;
         &::first-letter{
             color: $my-secondary;
@@ -142,7 +144,7 @@ header{
 }
 
 //              project show page
-#show{
+#projShow, #tagShow{
     .container{
         position: relative;
         height: calc(100vh - 3.5rem);
@@ -164,5 +166,31 @@ header{
 .swal-container{
     .swal2-popup{
         background-color: $grey-bg;
+    }
+}
+#tagIndex{
+    a{
+        text-decoration: none;
+        color: $white-txt;
+        &:hover{
+            color: $my-primary;
+        }
+    }
+    .edit i{
+        color: $black-txt;
+    }
+    table{
+        td{
+            width: 15%;
+        }
+        
+        td, th{
+            text-align: center;
+            &.white{
+                // text-align: end;
+                width: 55%;
+            }
+        }
+        
     }
 }

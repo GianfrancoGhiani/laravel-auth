@@ -5,15 +5,17 @@
 @endsection
 
 @section('content')
-    <section id="show">
+    <section id="projShow">
         <div class="container">
             <h1>{{$project->title}}</h1>
             <div class="post-body row">
-                <div class="body-text col-4">{{$project->content}}</div>
+                <div class="body-text {{$project->overview_image ? 'col-4': 'col-12'}}">{{$project->content}}</div>
                 @if ($project->overview_image)
                     <div class="body-image col-6 offset-2"><img src="{{asset('storage/'.$project->overview_image)}}" alt=""></div>
                 @endif
             </div>
+
+            {{-- edit pannel --}}
             <div class="card edit">
                 <div class="card-header"><h5>Edit zone</h5></div>
                 <div class="card-body d-flex justify-content-end">
