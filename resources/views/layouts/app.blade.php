@@ -34,10 +34,10 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button> --}}
-                    <div class="d-flex w-100 align-items-center justify-content-between" id="navbarSupportedContent">
+                    <div class="d-flex w-100 align-items-baseline justify-content-between" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <div class="me-auto">
-                            <h1>Logo</h1>
+                            <img src="{{Vite::asset('/resources/img/logo.png')}}" alt="" id="logo">
                         </div>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

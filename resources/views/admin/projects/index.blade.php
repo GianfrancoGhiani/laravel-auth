@@ -23,7 +23,20 @@
                             <ul class="container-fluid">
                                 @foreach ($projects as $project)
                                     <li class="row row-cols-2">
-                                        <a href="{{route('admin.projects.show', $project->slug)}}" title="View project">{{$project->title}} <sub> {{$project->tag_id ? $project->tag->name : ''}}</sub></a> 
+                                        <a href="{{route('admin.projects.show', $project->slug)}}" title="View project">
+                                            {{$project->title}} 
+                                            @if ($project->tag_id)
+                                                <sub title="{{$project->tag->name}}">
+                                                @if (!empty($project->tag->fa_icon))
+                                                    {!!$project->tag->fa_icon!!}                                                   
+                                                @else
+                                                    {{$project->tag->name}}
+                                                @endif                                                   
+                                                
+                                            </sub>
+                                            @endif
+                                            
+                                        </a> 
 
                                         {{-- edit part --}}
                                         <div class="edit col-auto row row-cols-2">

@@ -7,12 +7,22 @@
 @section('content')
     <section id="projShow">
         <div class="container">
-            <h1>{{$project->title}}</h1>
-            <div class="post-body row">
-                <div class="body-text {{$project->overview_image ? 'col-4': 'col-12'}}">{{$project->content}}</div>
-                @if ($project->overview_image)
-                    <div class="body-image col-6 offset-2"><img src="{{asset('storage/'.$project->overview_image)}}" alt=""></div>
-                @endif
+            <div class="card">
+                <div class="card-header d-flex align-items-baseline justify-content-between">
+                    <h1>{{$project->title}}</h1>
+                    @if ($project->tag_id)
+                        <div class="sub"> {{$project->tag_id ? $project->tag->name : ''}}</div>
+                    @endif
+                    
+                </div>
+                <div class="card-body">
+                    <div class="post-body row">
+                        <div class="body-text {{$project->overview_image ? 'col-4': 'col-12'}}">{{$project->content}}</div>
+                        @if ($project->overview_image)
+                            <div class="body-image col-6 offset-2"><img src="{{asset('storage/'.$project->overview_image)}}" alt=""></div>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             {{-- edit pannel --}}
@@ -30,7 +40,6 @@
                     </form>
                 </div>
             </div>
-        
         </div>
     </section>
 @endsection
