@@ -25,6 +25,7 @@
                                     <tr>
                                         <th>Icon</th>
                                         <th>Name</th>
+                                        <th>Posts Num</th>
                                         <th class="white"></th>
                                         <th>Edit</th>
                                     </tr>
@@ -34,6 +35,7 @@
                                         <tr>
                                             <td><a href="{{route('admin.tags.show', $tag->slug)}}" title="View tag">{!!$tag->fa_icon!!}</a></td>
                                             <td><a href="{{route('admin.tags.show', $tag->slug)}}" title="View tag">{{$tag->name}}</a></td>
+                                            <td>{{count($tag->projects)}}</td>
                                             <td class="white"></td>
                                             <td>
                                                 <div class="edit row row-cols-2">

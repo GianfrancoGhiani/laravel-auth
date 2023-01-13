@@ -17,7 +17,7 @@ class Tag extends Model
     {
         return Str::slug($name, '-');
     }
-    public function project(): HasMany
+    public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
     }

@@ -172,6 +172,11 @@ header{
             }
         }
     }
+    .edit-proj{
+        i{
+            color: $black-txt;
+        }
+    }
     .sub{
         font-size: 80%;
         padding: .5em;
@@ -209,7 +214,7 @@ header{
             text-align: center;
             &.white{
                 // text-align: end;
-                width: 55%;
+                width: 45%;
             }
         }
         
