@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title')
-    Portfolio - Tags
+    Portfolio - Technologies
 @endsection
 
 @section('content')
-    <section id="tagIndex">
+    <section id="techIndex">
         <div class="container">
             @if(session()->has('message'))
                 <div class="alert alert-success text-primary mb-3 mt-3">
@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Tag list:</h4>
+                            <h4>Tech list:</h4>
                         </div>
                         
         
@@ -23,24 +23,31 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Icon</th>
                                         <th>Name</th>
-                                        <th>Posts Num</th>
+                                        <th></th>
+                                        <th class="text-center">Posts Num</th>
                                         <th class="white"></th>
-                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tags as $tag)
+                                    @foreach ($technologies as $technology)
                                         <tr>
-                                            <td><a href="{{route('admin.tags.show', $tag->slug)}}" title="View tag">{!!$tag->fa_icon!!}</a></td>
-                                            <td><a href="{{route('admin.tags.show', $tag->slug)}}" title="View tag">{{$tag->name}}</a></td>
-                                            <td>{{count($tag->projects)}}</td>
+                                            <td>
+                                                <form action="{{route('admin.technologies.update', ['technology'=>$technology->slug])}}" method="POST" class="m-auto">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="text" name="name" id="name" class="w-auto fake-name text-capitalize" required value="{{$technology->name}}">
+                                                </form>
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center">{{count($technology->projects)}}</td>
                                             <td class="white"></td>
                                             <td>
                                                 <div class="edit row row-cols-2">
-                                                    <a href="{{route('admin.tags.edit', ['tag'=>$tag->slug])}}" class="btn btn-primary col-6"><i class="fa-solid fa-pencil"></i></a>
-                                                    <form  class="col-6" action="{{route('admin.tags.destroy',['tag'=>$tag->slug])}}" method="post">
+                                                    
+                                                    {{-- <a href="{{route('admin.technologies.edit', ['tag'=>$tag->slug])}}" class="btn btn-primary col-6"><i class="fa-solid fa-pencil"></i></a> --}}
+                                                    <form  class="col-6" action="{{route('admin.technologies.destroy',['technology'=>$technology->slug])}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-secondary my-delete" type="submit"><i class="fa-regular fa-trash-can"></i></button>
@@ -66,10 +73,12 @@
         <div class="container">
             <div class="row my-3 ">
                 <div class="col-12">
-                    <div class="card p-5 ">
-                        <form action="{{route('admin.tags.create')}}" method="get">
+                    <div class="card container">
+                        <form action="{{route('admin.technologies.store')}}" class="row row-cols-1 card-body" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-primary">Create a new Tag</button>
+                            <label for="name" class="p-0"><h3>Create a new Tech</h3></label>
+                            <input class="col-6" type="text" name="name" id="name" placeholder="Insert tech name here...">
+                            <button type="submit" class="btn btn-primary w-auto offset-3">Create a new Tech</button>
                         </form>
                     </div>
                 </div>

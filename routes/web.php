@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\TechnologyController;
 
 
 // use App\Http\Controllers\ProfileController;
@@ -34,7 +35,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         Route::resource('/tags', TagController::class)->parameters(['tags' => 'tag:slug']);
-        Route::resource('/technologies', TagController::class)->parameters(['technologies' => 'technology:slug'])->except('create', 'edit');;
+        Route::resource('/technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug'])->except('show', 'create', 'edit');
     })->name('admin');
 
 
