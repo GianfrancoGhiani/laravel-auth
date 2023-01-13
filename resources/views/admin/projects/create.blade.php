@@ -37,7 +37,7 @@ Project Creation
                             <label class="form-check-label" for="techonologies-{{$technology->id}}">{{$technology->name}}</label>
                         </div>
                     @endforeach
-                </div>
+            </div>
                 
             </div>
             <div class="d-flex flex-column p-0 w-100">

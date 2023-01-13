@@ -24,10 +24,20 @@
                           <option value="{{$tag->id}}" {{ $tag->id == old('tag_id', $project->tag_id) ? 'selected' : '' }}>{{$tag->name}}</option>
                       @endforeach
                     </select>
-                    @error('category_id')
+                    @error('technology_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                   </div>
+                <div class="techs container p-0">
+                    <h5 class="">Technologies</h5>
+                    <div class="row row-cols-3 p-3">
+                        @foreach ($technologies as $technology)
+                            <div class="form-check form-switch">
+                                <input class="form-check-input rounded-pill" type="checkbox" id="techonologies-{{$technology->id}}"  name="technologies[]" value="{{$technology->id}}">
+                                <label class="form-check-label" for="techonologies-{{$technology->id}}">{{$technology->name}}</label>
+                            </div>
+                        @endforeach
+                </div>
                 <div class="d-flex flex-column p-0 w-100">
                     <label for="overview_image" class="w-50"><h5>Insert your porject image</h5>
                         <input type="file" name="overview_image" id="overview_image" class="input_file" >
