@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         Route::resource('/tags', TagController::class)->parameters(['tags' => 'tag:slug']);
+        Route::resource('/technologies', TagController::class)->parameters(['technologies' => 'technology:slug'])->except('create', 'edit');;
     })->name('admin');
 
 

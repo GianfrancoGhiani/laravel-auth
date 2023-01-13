@@ -101,6 +101,12 @@
                             </a>
                           </li>
                           <li>
+                            <a href="{{route('admin.technologies.index')}}" class="nav-link {{Route::currentRouteName() === 'admin.technologies.index' ? 'text-primary' : ''}}">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                Technologies
+                            </a>
+                          </li>
+                          <li>
                             <a href="#" class="nav-link">
                                 <i class="fa-regular fa-comments"></i>
                                 Blog
