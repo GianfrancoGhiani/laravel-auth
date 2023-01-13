@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Tag;
+use App\Models\Technology;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -23,8 +24,9 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         $tags = Tag::all();
+        $technologies = Technology::all();
         // dd($projects);
-        return view('admin/projects/index', compact('projects', 'tags'));
+        return view('admin/projects/index', compact('projects', 'tags', 'technologies'));
     }
 
     /**
@@ -35,8 +37,8 @@ class ProjectController extends Controller
     public function create()
     {
         $tags = Tag::all();
-
-        return view('admin.projects.create', compact('tags'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('tags', 'technologies'));
     }
 
     /**
@@ -60,6 +62,9 @@ class ProjectController extends Controller
         }
 
         $newproject = Project::create($form_data);
+        if ($request->has('technologies')) {
+            $newproject->technologies()->attach($request->technologies);
+        }
 
         return redirect()->route('admin.projects.show', ['project' => $newproject->slug]);
     }
@@ -85,8 +90,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $tags = Tag::all();
-
-        return view('admin.projects.edit', compact('project', 'tags'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'tags', 'technologies'));
     }
 
     /**
@@ -110,6 +115,9 @@ class ProjectController extends Controller
         }
 
         $project->update($form_data);
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
         return redirect()->route('admin.projects.index')->with('message', "$project->title updated");
     }
 

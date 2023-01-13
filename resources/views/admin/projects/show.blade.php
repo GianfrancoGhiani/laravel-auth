@@ -13,6 +13,11 @@
                     @if ($project->tag_id)
                         <div class="sub"> {{$project->tag_id ? $project->tag->name : ''}}</div>
                     @endif
+                    @if ($project)
+                        @foreach ($project->technologies as $technology)
+                            <div>{{$technology->name}}</div>
+                        @endforeach
+                    @endif
                     
                 </div>
                 <div class="card-body">

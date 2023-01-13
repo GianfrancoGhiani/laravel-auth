@@ -130,6 +130,7 @@ header{
     sub{
         color: $my-primary;
     }
+    
 }
 
 //              project create page
@@ -148,6 +149,11 @@ header{
     .card{
         max-height: 80%;
         overflow-y: auto;
+    }
+    .form-switch{
+        input, label{
+            cursor: pointer;
+        }
     }
     height: calc(100vh - 3.5rem);
     overflow-y: hidden;
