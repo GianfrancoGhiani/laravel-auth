@@ -10,14 +10,18 @@
             <div class="card">
                 <div class="card-header d-flex align-items-baseline justify-content-between">
                     <h1>{{$project->title}}</h1>
-                    @if ($project->tag_id)
-                        <div class="sub"> {{$project->tag_id ? $project->tag->name : ''}}</div>
-                    @endif
-                    @if ($project)
-                        @foreach ($project->technologies as $technology)
-                            <div>{{$technology->name}}</div>
-                        @endforeach
-                    @endif
+                    <div class="info d-flex">
+                        @if ($project->tag_id)
+                            <div class="sub me-3" title="Tag"><a href="{{route('admin.tags.show', $project->tag->slug)}}">{{$project->tag_id ? $project->tag->name : ''}}</a></div>
+                        @endif
+                        @if (count($project->technologies) > 0)
+                            <div class="sub text-capitalize" title="Technologies">
+                                @foreach ($project->technologies as $technology)
+                                    {{$technology->name}}
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
                     
                 </div>
                 <div class="card-body">

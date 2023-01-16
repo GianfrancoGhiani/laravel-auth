@@ -17,7 +17,7 @@
                     <textarea name="content" id="content" cols="30" rows="4">{{old('content', $project->content)}}</textarea>
                 </div>
                 <div class="mb-3 p-0">
-                    <label for="tag_id" class="form-label">Tag</label>
+                    <label for="tag_id" class="form-label"><h5>Tag</h5></label>
                     <select name="tag_id" id="tag_id" class="form-control w-25 @error('tag_id') is-invalid @enderror">
                       <option value="">Select tag</option>
                       @foreach ($tags as $tag)
@@ -33,15 +33,21 @@
                     <div class="row row-cols-3 p-3">
                         @foreach ($technologies as $technology)
                             <div class="form-check form-switch">
-                                <input class="form-check-input rounded-pill" type="checkbox" id="techonologies-{{$technology->id}}"  name="technologies[]" value="{{$technology->id}}">
+                                <input class="form-check-input rounded-pill" type="checkbox" id="techonologies-{{$technology->id}}"  name="technologies[]" value="{{$technology->id}}" @foreach($project->technologies as $proj_tech){{{$proj_tech->id == $technology->id ? 'checked' : ''}}}@endforeach>
                                 <label class="form-check-label" for="techonologies-{{$technology->id}}">{{$technology->name}}</label>
                             </div>
                         @endforeach
                 </div>
-                <div class="d-flex flex-column p-0 w-100">
-                    <label for="overview_image" class="w-50"><h5>Insert your porject image</h5>
-                        <input type="file" name="overview_image" id="overview_image" class="input_file" >
-                        <span></span>
+                <div id="upload" class="d-flex flex-column p-0 w-100">
+                    <h5>Insert your porject image</h5>
+                    <label for="overview_image" class="w-100 d-flex justify-content-between">
+                        <div>
+                            
+                            <input type="file" name="overview_image" id="overview_image" class="input_file" >
+                        </div>
+                        <div class="w-50">
+                            <img  class={{!($project->overview_image) ? 'd-none' : ''}} @class(['d-block' => $project->overview_image]) id="uploadPreview" src="{{asset('storage/' . $project->overview_image)}}">
+                        </div>
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary col-2 my-3">Update</button>

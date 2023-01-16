@@ -72,3 +72,18 @@ for (let i=0; i<delButtons.length; i++){
     })
     
 };
+
+// img preview
+const previewImage = document.getElementById('overview_image');
+previewImage.addEventListener('change', (event) =>{
+    var oFReader = new FileReader();
+    // var image  =  previewImage.files[0];
+    // console.log(image);
+    oFReader.readAsDataURL(previewImage.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreview").src = oFREvent.target.result;
+        document.getElementById("uploadPreview").classList.replace('d-none', 'd-block')
+    };
+});

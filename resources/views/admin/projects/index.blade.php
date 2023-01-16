@@ -7,7 +7,7 @@
     <section id="projIndex">
         <div class="container post-list">
             @if(session()->has('message'))
-                <div class="alert alert-success mb-3 mt-3">
+                <div class="alert alert-success text-primary mb-3 mt-3">
                     {{ session()->get('message') }}
                 </div>
             @endif

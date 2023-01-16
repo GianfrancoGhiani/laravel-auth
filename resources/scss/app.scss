@@ -135,10 +135,11 @@ header{
 
 //              project create page
 #projCreate, #projEdit{
+    color: $white-txt;
     label{
         padding: 0;
     }
-    input, textarea{
+    input, textarea, select{
         border-radius: 0.3rem;
         line-height: 2.5rem;
         &:focus{
@@ -147,7 +148,7 @@ header{
         }
     }
     .card{
-        max-height: 80%;
+        max-height: 90%;
         overflow-y: auto;
     }
     .form-switch{
@@ -157,6 +158,13 @@ header{
     }
     height: calc(100vh - 3.5rem);
     overflow-y: hidden;
+    #upload{
+        img{
+            outline: 2px solid $my-primary;
+            outline-offset: 4px;
+            max-width: 80%;
+        }
+    }
 
 }
 
@@ -184,6 +192,7 @@ header{
         }
     }
     .sub{
+        cursor: context-menu;
         font-size: 80%;
         padding: .5em;
         border-radius: .4em;
@@ -192,6 +201,10 @@ header{
         font-weight: 700;
         background-color: $my-primary;
         margin-bottom: 1rem;
+        a{
+            color: $black-txt;
+            text-decoration: none;
+        }
     }
 }
 
